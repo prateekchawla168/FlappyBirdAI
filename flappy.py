@@ -310,4 +310,13 @@ def MainGame(movementInfo):
             lowerPipes.append(newPipe[1])
 
         # If first pipe gets out of bounds on left, remove it.
+            if upperPipes[0]['x'] < -IMAGES['pipe'][0].get_width():
+                upperPipes.pop(0)
+                lowerPipes.pop(0)
+
+        # Now draw the sprites
+        SCREEN.blit(IMAGES['background'], (0.0))
+        for upipe,lpipe in zip(upperPipes,lowerPipes):
+            SCREEN.blit(IMAGES['pipe'][0],(upipe['x'],upipe['y']))
+            SCREEN.blit(IMAGES['pipe'][1],(lpipe['x'],lpipe['y']))
         
