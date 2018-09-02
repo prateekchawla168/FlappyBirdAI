@@ -1,4 +1,5 @@
 import json
+import datetime
 
 class Bot(object):
     '''
@@ -119,6 +120,7 @@ class Bot(object):
 
     def displayStats(self):
         # Display the stats of the current game
+        print('Time: ', datetime.datetime.now())
         print('Game number: ',self.gameCNT)
         print('Last Move (State, Action, Current State): ', list(reversed(self.moves))[0])
         print('Score: ',self.score)
