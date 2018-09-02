@@ -14,7 +14,7 @@ class Bot(object):
         self.lr = 0.7
         self.load_qvalues()
         self.last_state = "420_240_0"
-        self.last_action
+        self.last_action = 0
         self.moves = []
     
     def load_qvalues(self):
