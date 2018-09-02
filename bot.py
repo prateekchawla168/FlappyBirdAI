@@ -16,6 +16,7 @@ class Bot(object):
         self.last_state = "420_240_0"
         self.last_action = 0
         self.moves = []
+        self.score = 0 # Starts from 0, updated if necessary
     
     def load_qvalues(self):
         '''
@@ -79,6 +80,7 @@ class Bot(object):
             t += 1
 
         self.gameCNT += 1   #Game has obviously ended by this point, so increase counter
+        self.displayStats() # Display the bot game stats
         self.dump_qvalues() #Also dump q-values data while we're at it
         self.moves = [] #Clear up moves for next gen - we've already updated the strategy while dumping
 
@@ -114,4 +116,13 @@ class Bot(object):
             json.dump(self.qvalues,infile)
             infile.close()
             print("Q-Values updated on the local file.")
+
+    def displayStats(self):
+        # Display the stats of the current game
+        print('Game number: ',self.gameCNT)
+        print('Last Move (State, Action, Current State): ', list(reversed(self.moves))[0])
+        print('Score: ',self.score)
+        self.score = 0 # Reset Bot score for next iteration - bot is definitely dead by this time 
         
+    def setBotScore(self,score):
+        self.score = score
